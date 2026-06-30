@@ -274,21 +274,21 @@ const COMMERCE_FOOTER_HTML = `
                     </div>
                     <div class="col-xl-3 col-md-6 col-sm-6">
                         <div class="footer-title">
-                            <h5>Portfolio</h5>
+                            <h5>Products</h5>
                         </div>
                         <div class="footer-content">
                             <ul class="portfolio">
-                                <li><a href="portfolio-grid-3.html"><img src="images/photo-gallery/1.jpg" alt="" /> </a>
+                                <li><a href="javascript:void(0);"><img src="images/new-images/shop1.webp" alt="" /> </a>
                                 </li>
-                                <li><a href="portfolio-grid-3.html"><img src="images/photo-gallery/2.jpg" alt="" /> </a>
+                                <li><a href="javascript:void(0);"><img src="images/new-images/shop2.webp" alt="" /> </a>
                                 </li>
-                                <li><a href="portfolio-grid-3.html"><img src="images/photo-gallery/3.jpg" alt="" /> </a>
+                                <li><a href="javascript:void(0);"><img src= "images/new-images/shop3.webp" alt="" /> </a>
                                 </li>
-                                <li><a href="portfolio-grid-3.html"><img src="images/photo-gallery/4.jpg" alt="" /> </a>
+                                <li><a href="javascript:void(0);"><img src="images/new-images/shop4.webp" alt="" /> </a>
                                 </li>
-                                <li><a href="portfolio-grid-3.html"><img src="images/photo-gallery/7.jpg" alt="" /> </a>
+                                <li><a href="javascript:void(0);"><img src="images/new-images/shop5.webp" alt="" /> </a>
                                 </li>
-                                <li><a href="portfolio-grid-3.html"><img src="images/photo-gallery/9.jpg" alt="" /> </a>
+                                <li><a href="javascript:void(0);"><img src="images/new-images/shop6.webp" alt="" /> </a>
                                 </li>
                             </ul>
                         </div>
