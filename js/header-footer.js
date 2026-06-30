@@ -38,6 +38,9 @@ const HEADER_HTML = `
 														<a href="blog-grid-col-3.html">Blog</a>
 													</li>
 													<li><a href="contact-us.html">Contact Us</a></li>
+													<li class="d-xl-none">
+														<a href="commerce/shop.html">Shop Online</a>
+													</li>
 												</ul>
 											</div>
 										</nav>
@@ -172,3 +175,65 @@ const FOOTER_HTML = `
 				</div>
 			</div>
 `;
+
+// Dynamic page transition overlay logic (Root Landing Page)
+document.addEventListener('DOMContentLoaded', () => {
+	// 1. Play transition-in ONLY if we just came from the commerce shop
+	if (sessionStorage.getItem('transitionFromShop') === 'true') {
+		sessionStorage.removeItem('transitionFromShop');
+		const overlay = document.createElement('div');
+		overlay.className = 'page-transition-overlay';
+		document.body.prepend(overlay);
+
+		// Fade out the overlay to reveal the landing page content
+		setTimeout(() => {
+			overlay.classList.add('fade-out');
+		}, 100);
+
+		// Clean up overlay DOM element after transition completes
+		setTimeout(() => {
+			overlay.remove();
+		}, 600);
+	}
+
+	// 2. Intercept navigation leaving the landing page to go to the commerce shop
+	document.addEventListener('click', (e) => {
+		const target = e.target.closest('a, button');
+		if (!target) return;
+
+		let targetUrl = '';
+
+		// Check standard relative anchor link
+		if (target.tagName === 'A' && target.getAttribute('href')) {
+			const href = target.getAttribute('href');
+			if (href.includes('commerce/')) {
+				targetUrl = href;
+			}
+		}
+
+		// Check button onclick redirect
+		const onclickAttr = target.getAttribute('onclick');
+		if (onclickAttr && onclickAttr.includes('location.href')) {
+			const match = onclickAttr.match(/location\.href\s*=\s*['"]([^'"]+)['"]/);
+			if (match && match[1] && match[1].includes('commerce/')) {
+				targetUrl = match[1];
+			}
+		}
+
+		if (targetUrl) {
+			e.preventDefault();
+			e.stopPropagation();
+
+			// Set session flag and create the opaque overlay
+			sessionStorage.setItem('transitionFromMain', 'true');
+			const overlay = document.createElement('div');
+			overlay.className = 'page-transition-overlay';
+			document.body.prepend(overlay);
+
+			// Navigate after transition completes
+			setTimeout(() => {
+				window.location.href = targetUrl;
+			}, 500);
+		}
+	}, true); // Use capture phase
+});

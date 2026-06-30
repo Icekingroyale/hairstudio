@@ -317,3 +317,66 @@ const COMMERCE_FOOTER_HTML = `
             </div>
         </div>
 `;
+
+// Dynamic page transition overlay logic (Commerce Store)
+document.addEventListener('DOMContentLoaded', () => {
+	// 1. Play transition-in ONLY if we just came from the main landing page
+	if (sessionStorage.getItem('transitionFromMain') === 'true') {
+		sessionStorage.removeItem('transitionFromMain');
+		const overlay = document.createElement('div');
+		overlay.className = 'page-transition-overlay';
+		document.body.prepend(overlay);
+
+		// Fade out the overlay to reveal the commerce page content
+		setTimeout(() => {
+			overlay.classList.add('fade-out');
+		}, 100);
+
+		// Clean up overlay DOM element after transition completes
+		setTimeout(() => {
+			overlay.remove();
+		}, 600);
+	}
+
+	// 2. Intercept navigation leaving the commerce shop to go to the main landing page
+	document.addEventListener('click', (e) => {
+		const target = e.target.closest('a, button');
+		if (!target) return;
+
+		let targetUrl = '';
+
+		// Check standard relative anchor link
+		if (target.tagName === 'A' && target.getAttribute('href')) {
+			const href = target.getAttribute('href');
+			// Intercept links leaving commerce directory
+			if (href.startsWith('../')) {
+				targetUrl = href;
+			}
+		}
+
+		// Check button onclick redirect
+		const onclickAttr = target.getAttribute('onclick');
+		if (onclickAttr && onclickAttr.includes('location.href')) {
+			const match = onclickAttr.match(/location\.href\s*=\s*['"]([^'"]+)['"]/);
+			if (match && match[1] && match[1].startsWith('../')) {
+				targetUrl = match[1];
+			}
+		}
+
+		if (targetUrl) {
+			e.preventDefault();
+			e.stopPropagation();
+
+			// Set session flag and create the opaque overlay
+			sessionStorage.setItem('transitionFromShop', 'true');
+			const overlay = document.createElement('div');
+			overlay.className = 'page-transition-overlay';
+			document.body.prepend(overlay);
+
+			// Navigate after transition completes
+			setTimeout(() => {
+				window.location.href = targetUrl;
+			}, 500);
+		}
+	}, true); // Use capture phase
+});
