@@ -53,7 +53,7 @@ const HEADER_HTML = `
 									</div>
 								</div>
 								<div class="pbmit-button-box-second">
-									<a href="commerce/shop.html" targer="_blank" class="pbmit-btn">
+									<a href="commerce/shop.html" class="pbmit-btn">
 										<span class="pbmit-button-text">SHOP ONLINE</span>
 									</a>
 								</div>

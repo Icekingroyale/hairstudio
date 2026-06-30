@@ -30,10 +30,10 @@ const COMMERCE_HEADER_HTML = `
                                 </div>
                             </li>
                             <li class="d-inline-block">
-                                <span class="list-inline-item"><a href="https://www.facebook.com/"><i
+                                <span class="list-inline-item"><a href="javascript:void(0);"><i
                                             class="fa fa-facebook" aria-hidden="true"></i></a>
                                 </span>
-                                <span class="list-inline-item"><a href="https://twitter.com/"><i class="fa fa-twitter"
+                                <span class="list-inline-item"><a href="javascript:void(0);"><i class="fa fa-twitter"
                                             aria-hidden="true"></i></a>
                                 </span>
                             </li>
@@ -50,9 +50,9 @@ const COMMERCE_HEADER_HTML = `
                         <div class="menu-content">
                             <div class="menu-left">
                                 <div class="brand-logo" style="display: flex; align-items: center;">
-                                    <a href="shop.html" style="display: flex; align-items: center; text-decoration: none;">
+                                    <a href="../index.html" target="_self" style="display: flex; align-items: center; text-decoration: none;">
                                         <img src="images/logo.png" alt="logo">
-                                        <span style="font-size: 16px; font-weight: 700; color: #333; margin-left: 12px; white-space: nowrap; text-transform: uppercase;">Shop @ HairStudio763</span>
+                                        <span style="font-size: 16px; font-weight: 700; color: #333; margin-left: 12px; white-space: nowrap; text-transform: uppercase;">Back to Home</span>
                                     </a>
                                 </div>
                             </div>
